@@ -5,6 +5,11 @@ import streamlit as st
 # Carrega a chave de API da variável de ambiente
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
+# Verifica se a chave de API foi carregada
+if not openai.api_key:
+    st.error("Chave de API da OpenAI não encontrada. Verifique as configurações de segredo no Streamlit Cloud.")
+    st.stop()
+
 # Configura a interface do Streamlit
 st.set_page_config(page_title="💬 Chatbot Personalizado com IA", page_icon="💬", layout="centered")
 st.title('💬 Chatbot Personalizado com IA')
